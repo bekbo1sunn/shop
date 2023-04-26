@@ -83,8 +83,8 @@ WSGI_APPLICATION = 'config.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': "shop",
-        'USER': "nurkamila",
+        'NAME': "shop_db",
+        'USER': "nastya",
         'PASSWORD': "1",
         'HOST': '127.0.0.1',
         'PORT': '5432',
@@ -159,6 +159,6 @@ AUTH_USER_MODEL = 'account.User'
 from datetime import timedelta
 
 SIMPLE_JWT = {
-    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=5),
+    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=60),
     'REFRESH_TOKEN_LIFETIME': timedelta(days=1),
 }
