@@ -12,6 +12,14 @@ class CommentSerializer(ModelSerializer):
         attrs["user"] = self.context["request"].user
         return attrs
 
+    def to_representation(self, instance: Comment):
+        rep = super().to_representation(instance)
+        rep["user"] = {
+            "id": instance.user.id,
+            "email": instance.user.email
+        }
+        return rep
+
 
 class RatingSerializer(ModelSerializer):
     class Meta:
@@ -41,3 +49,10 @@ class FavoriteSerializer(ModelSerializer):
         super().validate(attrs)
         attrs["user"] = self.context["request"].user
         return attrs
+
+    def to_representation(self, instance: Favorite):
+        from main.serializers import ProductSerializer
+
+        rep = super().to_representation(instance)
+        rep["product"] = ProductSerializer(instance.product).data
+        return rep
